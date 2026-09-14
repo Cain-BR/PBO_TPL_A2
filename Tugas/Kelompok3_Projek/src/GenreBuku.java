@@ -14,9 +14,4 @@ public class GenreBuku {
     public String getNamaGenre() {
         return namaGenre;
     }
-
-    @Override
-    public String toString() {
-        return namaGenre;
-    }
 }

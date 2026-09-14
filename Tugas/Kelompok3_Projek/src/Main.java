@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        Perpustakaan perpus = new Perpustakaan("Perpustakaan");
+        Perpustakaan perpus = new Perpustakaan("Perpustakaan IPB Vokasi");
 
         // Buat genre
         GenreBuku fiksi = new GenreBuku("G1", "Fiksi");
@@ -12,36 +12,35 @@ public class Main {
         Buku buku1 = new Buku("B1", "Laskar Pelangi", "Andrea Hirata", fiksi);
         Buku buku2 = new Buku("B2", "Clean Code", "Robert C. Martin", teknologi);
         Buku buku3 = new Buku("B3", "Bumi Manusia", "Pramoedya A. Toer", fiksi);
+        Buku buku4 = new Buku("B4", "Effective Java", "Joshua Bloch", teknologi);
         perpus.tambahBuku(buku1);
         perpus.tambahBuku(buku2);
         perpus.tambahBuku(buku3);
+        perpus.tambahBuku(buku4);
 
-        // Buat member
-        Member ghazy = new Member("M1", "Ghazy");
-        Member syafiq = new Member("M2", "Syafiq");
-        perpus.tambahMember(ghazy);
-        perpus.tambahMember(syafiq);
-
-        System.out.println();
-        perpus.tampilkanSemuaBuku();
-
-        System.out.println();
-        ghazy.pinjamBuku(buku1);
-        syafiq.pinjamBuku(buku2);
-        syafiq.pinjamBuku(buku1); // akan gagal, sudah dipinjam Ghazy
+        // Buat member: Member bersifat abstract, jadi yang dibuat instance-nya
+        // adalah subclass-nya (Mahasiswa / Dosen) -> ini contoh polymorphism
+        Member orang1 = new Mahasiswa("M1", "Orang1", "J0304xxxxx");
+        Member orang2 = new Dosen("M2", "Orang2", "1980xxxxxx");
+        perpus.tambahMember(orang1);
+        perpus.tambahMember(orang2);
 
         System.out.println();
         perpus.tampilkanSemuaBuku();
 
+        // Mahasiswa coba pinjam 4 buku, padahal batasnya 3
         System.out.println();
-        ghazy.tampilkanBukuDipinjam();
-        syafiq.tampilkanBukuDipinjam();
+        seiya.pinjamBuku(buku1);
+        seiya.pinjamBuku(buku2);
+        seiya.pinjamBuku(buku3);
+        seiya.pinjamBuku(buku4); // ditolak, sudah 3 buku (batas mahasiswa)
+
+        // Dosen batasnya lebih longgar
+        System.out.println();
+        pakBudi.pinjamBuku(buku4);
 
         System.out.println();
-        ghazy.kembalikanBuku(buku1);
-        syafiq.pinjamBuku(buku1); // sekarang berhasil
-
-        System.out.println();
-        perpus.tampilkanBukuByGenre(fiksi);
+        seiya.tampilkanBukuDipinjam();
+        pakBudi.tampilkanBukuDipinjam();
     }
 }

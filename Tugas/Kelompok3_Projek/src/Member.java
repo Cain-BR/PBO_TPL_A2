@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Member {
+public abstract class Member {
     private String idMember;
     private String nama;
     private List<Buku> daftarBukuDipinjam;
@@ -11,6 +11,8 @@ public class Member {
         this.nama = nama;
         this.daftarBukuDipinjam = new ArrayList<>();
     }
+
+    public abstract int getMaksPinjam();
 
     public String getIdMember() {
         return idMember;
@@ -28,6 +30,11 @@ public class Member {
         if (buku.isSedangDipinjam()) {
             System.out.println("Gagal: buku \"" + buku.getJudul() + "\" sedang dipinjam oleh "
                     + buku.getPeminjam().getNama());
+            return;
+        }
+        if (daftarBukuDipinjam.size() >= getMaksPinjam()) {
+            System.out.println("Gagal: " + nama + " sudah mencapai batas maksimal "
+                    + getMaksPinjam() + " buku");
             return;
         }
         buku.setSedangDipinjam(true);
@@ -48,7 +55,7 @@ public class Member {
     }
 
     public void tampilkanBukuDipinjam() {
-        System.out.println("Buku yang dipinjam oleh " + nama + ":");
+        System.out.println("Buku yang dipinjam oleh " + nama + " (maks " + getMaksPinjam() + "):");
         if (daftarBukuDipinjam.isEmpty()) {
             System.out.println("  (tidak ada)");
         } else {
