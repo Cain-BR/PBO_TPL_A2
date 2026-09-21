@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Perpustakaan {
-    private String namaPerpustakaan;
-    private List<Member> daftarMember;
-    private List<Buku> daftarBuku;
-    private List<GenreBuku> daftarGenre;
+    private final String namaPerpustakaan;
+    private final List<Member> daftarMember;
+    private final List<Buku> daftarBuku;
+    private final List<GenreBuku> daftarGenre;
 
     public Perpustakaan(String namaPerpustakaan) {
         this.namaPerpustakaan = namaPerpustakaan;

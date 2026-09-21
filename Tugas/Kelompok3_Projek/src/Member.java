@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Member {
-    private String idMember;
-    private String nama;
-    private List<Buku> daftarBukuDipinjam;
+public abstract class Member implements Peminjam {
+    private final String idMember;
+    private final String nama;
+    private final List<Buku> daftarBukuDipinjam;
 
     public Member(String idMember, String nama) {
         this.idMember = idMember;
@@ -12,6 +12,7 @@ public abstract class Member {
         this.daftarBukuDipinjam = new ArrayList<>();
     }
 
+    // method abstrak: setiap turunan Member wajib menentukan batas pinjamnya sendiri
     public abstract int getMaksPinjam();
 
     public String getIdMember() {
@@ -26,6 +27,7 @@ public abstract class Member {
         return daftarBukuDipinjam;
     }
 
+    @Override
     public void pinjamBuku(Buku buku) {
         if (buku.isSedangDipinjam()) {
             System.out.println("Gagal: buku \"" + buku.getJudul() + "\" sedang dipinjam oleh "
@@ -43,6 +45,7 @@ public abstract class Member {
         System.out.println(nama + " berhasil meminjam \"" + buku.getJudul() + "\"");
     }
 
+    @Override
     public void kembalikanBuku(Buku buku) {
         if (!daftarBukuDipinjam.contains(buku)) {
             System.out.println(nama + " tidak sedang meminjam \"" + buku.getJudul() + "\"");

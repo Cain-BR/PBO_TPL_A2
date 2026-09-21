@@ -1,8 +1,8 @@
 public class Mahasiswa {
-    private String nim;
-    private String nama;
-    private String programStudi;
-    private int semester;
+    private final String nim;
+    private final String nama;
+    private final String programStudi;
+    private  int semester;
     private double ipk;
 
     public Mahasiswa(String nim, String nama, String programStudi, int semester, double ipk) {
@@ -34,7 +34,7 @@ public class Mahasiswa {
         return ipk;
     }
 
-    public void setIpk(double ipk) {
+    public final void setIpk(double ipk) {
         if (ipk < 0.0 || ipk > 4.0) {
             System.out.println("IPK harus 0.0 sampai 4.0");
             return;
