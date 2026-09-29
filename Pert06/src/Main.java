@@ -12,5 +12,11 @@ public class Main {
         b.suara();
         c.suara();
         d.suara();
+        BidangDatar obj1 = new Lingkaran(1.5);
+        BidangDatar obj2 = new Persegi(1.5);
+        BidangDatar obj3 = new PersegiPanjang(1.5, 2.5);
+        System.out.println(obj1.hitungLuas());
+        System.out.println(obj2.hitungLuas());
+        System.out.println(obj3.hitungLuas());
     }
 }
